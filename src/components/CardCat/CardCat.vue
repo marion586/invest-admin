@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
+
 defineProps({
   data: {
     type: String,
@@ -16,10 +17,7 @@ defineProps({
 
     <div class="card__content">
       <h3>{{ data.name }}</h3>
-      <div>
-        <span>Edit</span>
-        <span> delete </span>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -36,6 +34,7 @@ defineProps({
   }
   &__content {
     @apply flex flex-col items-center;
+
     h3 {
     }
   }

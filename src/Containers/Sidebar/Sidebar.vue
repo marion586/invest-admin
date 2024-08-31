@@ -65,13 +65,8 @@ const menu = [
     icon: "CarOutlined",
   },
   {
-    key: 3,
-    item: "Listes de demandes",
-    icon: "ShoppingCartOutlined",
-  },
-  {
     key: 4,
-    item: "Utilisateurs",
+    item: "Users",
     icon: "UsergroupAddOutlined",
   },
   {

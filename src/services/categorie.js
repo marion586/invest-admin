@@ -7,4 +7,8 @@ export default class categorieService {
   static async getCategorie() {
     return await Http.get("/categorie");
   }
+
+  static async deleteCategorie(id) {
+    return await Http.delteData(`/categorie/${id}`);
+  }
 }

@@ -36,4 +36,13 @@ export class Http {
       throw error.response;
     }
   }
+
+  static async delteData(url) {
+    try {
+      const { data } = await axios.delete(url);
+      return data;
+    } catch (error) {
+      throw error.response;
+    }
+  }
 }

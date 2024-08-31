@@ -50,7 +50,7 @@ async function getData() {
   const { data } = await categorieService.getCategorie();
   if (data) {
     data.forEach((element) => {
-      let obj = { name: element.name, image: element.image };
+      let obj = { name: element.name, image: element.image, id: element._id };
       categorie.value.push(obj);
     });
   }
@@ -59,6 +59,12 @@ async function getData() {
 async function addData(params) {
   const { data } = await categorieService.addCategorie(params);
   console.log(data);
+}
+async function deleteCategorie(d) {
+  console.log(d.id);
+  await categorieService.deleteCategorie(d.id);
+  categorie.value = categorie.value.filter((item) => item.id !== d.id);
+  console.log(categorie.value);
 }
 onMounted(() => {
   getData();
@@ -110,7 +116,16 @@ onMounted(() => {
         </template>
       </Modal>
       <div class="categorie__content" v-if="categorie.length > 0">
-        <CardCat :data="cat" v-for="cat in categorie" :key="cat.name" />
+        <CardCat :data="cat" v-for="cat in categorie" :key="cat.name">
+          <div class="categorie__content-btn">
+            <ButtonComponentVue @on-click="editCategorie(cat)"
+              >Edit</ButtonComponentVue
+            >
+            <ButtonComponentVue @on-click="deleteCategorie(cat)"
+              >Delete</ButtonComponentVue
+            >
+          </div>
+        </CardCat>
       </div>
 
       <div class="categorie__empty" v-else>
@@ -128,6 +143,9 @@ onMounted(() => {
     @apply flex justify-end border-[1px] p-[20px] rounded-[5px] border-[#ccc];
   }
   &__content {
+    &-btn {
+      @apply flex gap-[5px];
+    }
     @apply flex border-[1px] p-[20px] gap-[20px] rounded-[5px] border-[#ccc] mt-[20px] h-auto flex-wrap;
   }
   &__empty {
