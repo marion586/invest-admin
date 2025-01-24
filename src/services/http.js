@@ -7,7 +7,7 @@ if (localStorage.getItem("token")) {
   delete axios.defaults.headers.common["Authentication"];
 }
 
-axios.defaults.baseURL = process.env.BASE_URL;
+axios.defaults.baseURL = "https://inverst-bakend.onrender.com";
 
 export class Http {
   static async get(url) {
