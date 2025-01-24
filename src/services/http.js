@@ -7,7 +7,7 @@ if (localStorage.getItem("token")) {
   delete axios.defaults.headers.common["Authentication"];
 }
 
-axios.defaults.baseURL = "http://localhost:3002";
+axios.defaults.baseURL = process.env.BASE_URL;
 
 export class Http {
   static async get(url) {
